@@ -10,18 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
-    services:
-      db:
-        image: nouchka/sqlite3:latest  # Or another DB service if needed
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U postgres"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    runs-on: ubuntu-latest  # Windows is also fine, but Ubuntu has more native support for GitHub Actions
 
     steps:
     - name: Checkout code
@@ -30,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.12'  # Use the version that matches your local environment
+        python-version: '3.12'  # Match with your local version if needed
 
     - name: Install dependencies
       run: |
@@ -39,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest test_auth.py  # Change this to your main test command
+        pytest test_auth.py --disable-warnings --maxfail=1  # Adapt this command if needed for additional options
