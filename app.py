@@ -17,7 +17,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(120), nullable=False)
 
 # Routes
-@app.route('/')
+@app.route()
 def index():
     return render_template('index.html')
 
