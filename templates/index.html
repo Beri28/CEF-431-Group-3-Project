@@ -3,59 +3,51 @@
 {% block content %}
 <div class="hero-section">
     <div class="hero-slider">
+        {% for slide in hero_images %}
         <div class="slide">
-            <img src="https://via.placeholder.com/1200x400" alt="Special Offer">
+            <img src="{{ url_for('static', filename='uploads/' + (slide.filename if slide.filename else 'default.jpg')) }}" alt="{{ slide.title }}">
             <div class="slide-content">
-                <h1>Welcome to ShopEase</h1>
-                <p>Discover amazing deals on premium products</p>
+                <h1>{{ slide.title }}</h1>
+                <p>{{ slide.description }}</p>
+                <diV style="height: 30px;"></diV>
                 <a href="#" class="btn btn-primary">Shop Now</a>
             </div>
         </div>
-        <div class="slide">
-            <img src="https://via.placeholder.com/1200x400" alt="New Collection">
-            <div class="slide-content">
-                <h1>New Collection</h1>
-                <p>Check out our latest arrivals</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
 <section class="featured-categories">
     <h2>Featured Categories</h2>
     <div class="category-grid">
+        {% for category in categories %}
         <div class="category-card">
-            <img src="https://via.placeholder.com/300x200" alt="Electronics">
-            <h3>Electronics</h3>
+            <img src="{{ url_for('static', filename='uploads/' + (category.filename if category.filename else 'default.jpg')) }}" alt="{{ category.name }}">
+            <h3>{{ category.name }}</h3>
+             <!-- Delete Button -->
+    <form action="{{ url_for('delete_image', image_id=category.id) }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
         </div>
-        <div class="category-card">
-            <img src="https://via.placeholder.com/300x200" alt="Fashion">
-            <h3>Fashion</h3>
-        </div>
-        <div class="category-card">
-            <img src="https://via.placeholder.com/300x200" alt="Home & Living">
-            <h3>Home & Living</h3>
-        </div>
-        <div class="category-card">
-            <img src="https://via.placeholder.com/300x200" alt="Beauty">
-            <h3>Beauty</h3>
-        </div>
+        {% endfor %}
     </div>
 </section>
 
 <section class="trending-products">
     <h2>Trending Products</h2>
     <div class="product-slider">
+        {% for image in images %}
         <div class="product-card">
-            <img src="https://via.placeholder.com/200x200" alt="Product 1">
-            <h3>Premium Watch</h3>
-            <p class="price">$199.99</p>
+            <img src="{{ url_for('static', filename='uploads/' + (image.filename if image.filename else 'default.jpg')) }}" alt="Uploaded Product">
+            <h3>{{ image.title }}</h3> <!-- You can customize this to show a proper title if you have one -->
+            <p class="price">$199.99</p> <!-- Placeholder price -->
+             <!-- Delete Button -->
+    <form action="{{ url_for('delete_image', image_id=image.id) }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
             <button class="btn btn-primary">Add to Cart</button>
         </div>
-        <!-- Add more product cards -->
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
-
-
