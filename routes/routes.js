@@ -152,8 +152,9 @@ router.post('/managerCode',async(req,res)=>{
     console.log(req.body)
     console.log(req.user)
     if(req.user.code==req.body.code){
-        //await userSchema.findOneAndUpdate({email:req.user.email},{$set:{isValidated:true}})
-        res.render('admin',{layout:'admin',name:req.user.name})
+        await userSchema.findOneAndUpdate({email:req.user.email},{$set:{isValidated:true}})
+        // res.render('admin',{layout:'admin',name:req.user.name})
+        res.redirect('/userAccount2')
     }
 })
 router.get('/logout',isLoggedIn,logoutUser)

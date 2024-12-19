@@ -233,30 +233,30 @@ drift.load('svyyafgtma2f');
             </div>
         </div>
          <!-- Modal content starts here -->
-            <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 800px;">
-              <div class="modal-content" style="overflow-y: auto;">
-                <button type="button" class="btn-close p-2 m-2 position-absolute" style="right: 0;" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="container row justify-content-center p-md-5 p-1 mt-md-0 mt-4 mb-md-0 mb-4">
-                    <div class="col-md-6 col-11 mb-md-0 mb-4">
-                        <img src="./assets/pics/other-0.jpg" class="img-fluid rounded3" alt="" style="filter: drop-shadow(2px 4px 16px black);">
-                    </div>
-                    <div class="col-md-6 col-11 pt-md-3">
-                        <p class="h2" style="font-family: cursive;">Food name</p>
-                        <p class="rating">3.8 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (17) ratings</p>
-                        <p>2000FCFA</p>
-                        <div class="description">
-                            <p class="h5">Description</p>
-                            <h6 class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Ab deserunt repellendus accusantium facere sapiente eveniet ducimus sunt, nulla quam, velit molestias illum ipsum nisi rem illo eos eaque neque tempora.</h6>
-                        </div>
-                        <button class="btn btn-orange w-100">Add to Cart</button>
-                    </div>
+        <div class="modal fade" id="exampleModalCenteredScrollable" tabindex="-1" aria-labelledby="exampleModalCenteredScrollableTitle" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 800px;">
+            <div class="modal-content" style="overflow-y: auto;">
+            <button type="button" class="btn-close p-2 m-2 position-absolute" style="right: 0;" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="container row justify-content-center p-md-5 p-1 mt-md-0 mt-4 mb-md-0 mb-4">
+                <div class="col-md-6 col-11 mb-md-0 mb-4">
+                    <img src="./assets/pics/other-0.jpg" class="img-fluid rounded3" alt="" style="filter: drop-shadow(2px 4px 16px black);">
                 </div>
-              </div>
+                <div class="col-md-6 col-11 pt-md-3">
+                    <p class="h2" style="font-family: cursive;">Food name</p>
+                    <p class="rating">3.8 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (17) ratings</p>
+                    <p>2000FCFA</p>
+                    <div class="description">
+                        <p class="h5">Description</p>
+                        <h6 class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Ab deserunt repellendus accusantium facere sapiente eveniet ducimus sunt, nulla quam, velit molestias illum ipsum nisi rem illo eos eaque neque tempora.</h6>
+                    </div>
+                    <button class="btn btn-orange w-100">Add to Cart</button>
+                </div>
             </div>
-            <!-- Modal content ends here -->
             </div>
+        </div>
+        <!-- Modal content ends here -->
+        </div>
     </div>
     <div class="shadow-2 container position-relative mb-4 cart d-none">
         <div class="header">
@@ -337,7 +337,7 @@ drift.load('svyyafgtma2f');
             })
             function AppInit(){
             let allMeals;
-            fetch('https://dreamland-restaurant.onrender.com/getMeals/none',{
+            fetch('http://localhost:5000/getMeals/none',{
                 method:'GET'
             }).then(res=>res.json())
             .then((data)=>{
@@ -376,7 +376,7 @@ drift.load('svyyafgtma2f');
                             </a>
                             <button class="btn btn-outline-orange-2 add-2-cart" style="border-radius:10px;"><i class="fas fa-plus" style="font-size: 12px;">Add to cart</i></button>
                             <button class="btn btn-outline-orange-2 delete" style="border-radius: 10px;"><i class="fas fa-trash" style="font-size: 12px;"> Delete</i></button>
-                            <button class="btn btn-outline-orange-2" style="border-radius: 10px;"><i class="fas fa-edit" style="font-size: 12px;"> Edit</i></button>
+                            <button class="btn btn-outline-orange-2 edit-button" style="border-radius: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModalCenteredScrollable"><i class="fas fa-edit" style="font-size: 12px;"> Edit</i></button>
                             <button class="btn btn-outline-orange-2 mt-2 todays-menu ${d_none}" style="border-radius: 10px; font-size:12px; font-weight:bold;">Add to Today's Menu</button>
                             <button class="btn btn-outline-orange-2 mt-2 r-todays-menu ${d_none2}" style="border-radius: 10px; font-size:12px; font-weight:bold;">Remove from Today's Menu</button>
                             <button class="btn btn-outline-orange-2 mt-2 promo-menu ${d_none3}" style="border-radius: 10px; font-size:12px; font-weight:bold;">Add to Promo Menu</button>
@@ -388,46 +388,90 @@ drift.load('svyyafgtma2f');
                 all_meals.insertAdjacentHTML('beforeend',ac)
                 amd.insertAdjacentHTML('beforeend',ac)
                 let more=document.querySelectorAll('.more')
-                        let modal_content=document.querySelector('.modal-content')
-                        for(let i=0;i<more.length;i++){
-                            more[i].addEventListener('click',()=>{
-                                let id=more[i].parentElement.previousElementSibling.textContent
-                                let results;
-                                for(let i=0;i<allMeals.length;i++){
-                                    if(allMeals[i]._id==id){
-                                        results=allMeals[i]
-                                        break;
-                                    }
+                    let modal_content=document.querySelector('.modal-content')
+                    for(let i=0;i<more.length;i++){
+                        more[i].addEventListener('click',()=>{
+                            let id=more[i].parentElement.previousElementSibling.textContent
+                            let results;
+                            for(let i=0;i<allMeals.length;i++){
+                                if(allMeals[i]._id==id){
+                                    results=allMeals[i]
+                                    break;
                                 }
-                                modal_content.innerHTML=`
-                                <button type="button" class="btn-close p-2 m-2 position-absolute" style="right: 0;" data-bs-dismiss="modal" aria-label="Close"></button>
-                                <div class="container row justify-content-center p-md-5 p-1 mt-md-0 mt-4 mb-md-0 mb-4">
-                                    <div class="col-md-6 col-11 mb-md-0 mb-4">
-                                        <img src="./assets/images/${results.image}" class="img-fluid rounded3" alt="" style="filter: drop-shadow(2px 4px 16px black);">
-                                    </div>
-                                    <div class="col-md-6 col-11 pt-md-3">
-                                        <p class="h2" style="font-family: cursive;">${results.name}</p>
-                                        <p class="rating">Rating ${results.rating} <span class="stars"></span> (${results.rated_by} ratings)</p>
-                                        <p>${results.price} FCFA</p>
-                                        <div class="description">
-                                            <p class="h5">Description</p>
-                                            <h6 class="text-muted">
-                                                ${results.description}
-                                            </h6>
-                                        </div>
-                                        <button class="btn btn-orange w-100">Add to Cart</button>
-                                    </div>
+                            }
+                            modal_content.innerHTML=`
+                            <button type="button" class="btn-close p-2 m-2 position-absolute" style="right: 0;" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="container row justify-content-center p-md-5 p-1 mt-md-0 mt-4 mb-md-0 mb-4">
+                                <div class="col-md-6 col-11 mb-md-0 mb-4">
+                                    <img src="./assets/images/${results.image}" class="img-fluid rounded3" alt="" style="filter: drop-shadow(2px 4px 16px black);">
                                 </div>
-                                ` 
-                            })
-                        }
+                                <div class="col-md-6 col-11 pt-md-3">
+                                    <p class="h2" style="font-family: cursive;">${results.name}</p>
+                                    <p class="rating">Rating ${results.rating} <span class="stars"></span> (${results.rated_by} ratings)</p>
+                                    <p>${results.price} FCFA</p>
+                                    <div class="description">
+                                        <p class="h5">Description</p>
+                                        <h6 class="text-muted">
+                                            ${results.description}
+                                        </h6>
+                                    </div>
+                                    <button class="btn btn-orange w-100">Add to Cart</button>
+                                </div>
+                            </div>
+                            ` 
+                        })
+                    }
+                let edit=document.querySelectorAll('.edit-button')
+                let editModal=document.querySelector('.modal-content')
+                for(let i=0;i<edit.length;i++){
+                        edit[i].addEventListener('click',()=>{
+                            let results;
+                            let id=edit[i].previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
+                            for(let i=0;i<allMeals.length;i++){
+                                if(allMeals[i]._id==id){
+                                    results=allMeals[i]
+                                    break;
+                                }
+                            }
+                            modal_content.innerHTML=`
+                            <div>
+                            <button type="button" class="btn-close p-2 m-2 position-absolute" style="right: 0;" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <form action="/editMeal" method="post" class="col-12 p-4 mt-2">
+                                <div class="form-group mb-2 d-none">
+                                    <label for="meal_id">Meal Id:${results._id} </label>
+                                    <input type="text" name="_id" class="form-control" placeholder="Enter new meal name" autocapitalize="words" value=${results._id}>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="name">Meal Name:${results.name} </label>
+                                    <input type="text" name="name" class="form-control" placeholder="Enter new meal name" autocapitalize="words" value="${results.name}">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="price">Meal Price:${results.price}</label>
+                                    <input type="number" name="price" class="form-control" placeholder="Enter new meal price in FCFA" value="${results.price}">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="image">Meal Picture</label>
+                                    <input type="file" name="image" class="form-control" placeholder="Select new meal picture">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="description">Description: ${results.description}</label>
+                                    <textarea class="form-control mt-2" name="description" id="description" cols="30" rows="5" placeholder="Enter any description thta will help customer know about the meal they ordering">${results.description}</textarea>
+                                </div>
+                                <input type="hidden" name="rating" value="0">
+                                <input type="hidden" name="rated_by" value="0">
+                                <input type="submit" value="Edit" class="btn btn-outline-orange-3 my-2 w-100">
+                            </form>
+                            </div>
+                            ` 
+                        })
+                    }
             }).then(()=>{
                 let addButtons=document.querySelectorAll('.add-2-cart')
                         addButtons.forEach(element=>{
                             element.addEventListener('click',()=>{
                                 let id2=element.previousElementSibling.previousElementSibling.textContent
                                 let cartItem;
-                                fetch(`https://dreamland-restaurant.onrender.com/add-to-cart/${id2}`).then(res=>res.json()).then((data)=>{
+                                fetch(`http://localhost:5000/add-to-cart/${id2}`).then(res=>res.json()).then((data)=>{
                                     let itemNum=document.querySelectorAll('.item-num')
                                     console.log(itemNum[0])
                                     itemNum.forEach((element)=>{
@@ -440,7 +484,7 @@ drift.load('svyyafgtma2f');
                 deletebuttons.forEach((element)=>{
                     let id2=element.previousElementSibling.previousElementSibling.previousElementSibling.textContent
                     element.addEventListener('click',()=>{
-                        fetch('https://dreamland-restaurant.onrender.com/deleteMeal',{
+                        fetch('http://localhost:5000/deleteMeal',{
                             method:"POST",
                             headers:{
                                 'Accept':'applicaiton/json, text/plain,*/*',
@@ -458,7 +502,7 @@ drift.load('svyyafgtma2f');
                 todaysMenu.forEach((element)=>{
                     let ID3=element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
                     element.addEventListener('click',()=>{
-                         fetch('https://dreamland-restaurant.onrender.com/addToTodaysMenu',{
+                         fetch('http://localhost:5000/addToTodaysMenu',{
                             method:'POST',
                             headers:{
                                 'Accept':'applicaiton/json, text/plain,*/*',
@@ -474,7 +518,7 @@ drift.load('svyyafgtma2f');
                 rTodaysMenu.forEach((element)=>{
                     let ID3=element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
                     element.addEventListener('click',()=>{
-                         fetch('https://dreamland-restaurant.onrender.com/rTodaysMenu',{
+                         fetch('http://localhost:5000/rTodaysMenu',{
                             method:'POST',
                             headers:{
                                 'Accept':'applicaiton/json, text/plain,*/*',
@@ -490,7 +534,7 @@ drift.load('svyyafgtma2f');
                 promoMenu.forEach((element)=>{
                     let ID3=element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
                     element.addEventListener('click',()=>{
-                        fetch('https://dreamland-restaurant.onrender.com/addToPromoMenu',{
+                        fetch('http://localhost:5000/addToPromoMenu',{
                             method:'POST',
                             headers:{
                                 'Accept':'applicaiton/json, text/plain,*/*',
@@ -506,7 +550,7 @@ drift.load('svyyafgtma2f');
                 rpromoMenu.forEach((element)=>{
                     let ID3=element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
                     element.addEventListener('click',()=>{
-                        fetch('https://dreamland-restaurant.onrender.com/rPromoMenu',{
+                        fetch('http://localhost:5000/rPromoMenu',{
                             method:'POST',
                             headers:{
                                 'Accept':'applicaiton/json, text/plain,*/*',

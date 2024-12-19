@@ -2,7 +2,7 @@ const userSchema=require('../model/user')
 const mealSchema=require('../model/meal')
 const paymentSchema=require('../model/payment')
 const menuSchema=require('../model/menu')
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 
 
 const saveNewUser=async (req,res)=>{

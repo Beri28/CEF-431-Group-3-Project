@@ -9,7 +9,7 @@ const userSchema=require('./model/user')
 const LocalStrategy=require('passport-local');
 const MongoDBSession=require('connect-mongodb-session')(session)
 const MongoStore=require('connect-mongo')
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 const hbs=require('express-handlebars')
 const multer=require('multer')
 const path=require('path')
@@ -101,10 +101,54 @@ app.post('/add',isAdmin,upload.single('image'),async (req,res)=>{
                 })
                 let newMeal= new mealSchema(req.body);
                 newMeal.save().then(()=>{
-                    res.redirect('/userAccount')
+                    res.redirect('/userAccount2')
                 }).catch(()=>{
                     res.send("Couldn't save")
                 })
+    } catch (error) {
+        console.log(error)
+        res.send("error in adding new meal")
+    }
+})
+app.post('/editMeal',
+    isAdmin,
+    upload.single('image'),
+    async (req,res)=>{
+    try {
+        console.log(req.body)
+        req.body.rating=parseInt(req.body.rating)
+        req.body.rated_by=parseInt(req.body.rated_by)
+        if(req.body.image.length>0){
+            req.body.image=req.body.name.replace(/\s+/g,'') + path.extname(req.file.originalname)
+            let oldImagePath= "public/assets/images/" + req.file.originalname;
+            let newImageName=req.body.image//req.body.image + path.extname(req.file.originalname) 
+            let newImagePath="public/assets/images/" + newImageName
+            fs.rename(`${oldImagePath}`,`${newImagePath}`,(err)=>{
+                if(err){
+                    throw(err)
+                }
+            })
+            let editedMeal=mealSchema.findByIdAndUpdate({_id:req.body._id},req.body)
+            if(editedMeal){
+                console.log("||||||")
+                console.log(editedMeal)
+                console.log("||||||")
+                res.redirect('/userAccount')
+            }else{
+                res.send("Couldn't save")
+            }
+        }else{
+            let editedMeal=mealSchema.findByIdAndUpdate({_id:req.body._id},{name:req.body.name,price:req.body.price,description:req.body.description})
+            if(editedMeal){
+                console.log("/////")
+                console.log(editedMeal)
+                console.log("/////")
+                res.redirect('/userAccount2')
+            }else{
+                res.send("Couldn't save")
+            }  
+        }
+            
     } catch (error) {
         console.log(error)
         res.send("error in adding new meal")

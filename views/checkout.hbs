@@ -11,11 +11,30 @@
     <script  type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div class="header">
+            <div class="m-3 back" >
+                <i class="fas fa-home shadow-2 p-4 mt-2" style="border-radius: 50%; background-color: white;"></i>
+            </div>
+    </div>
     <div class="row justify-content-center">
         <div class=" col-11">
             <h2>Items You are paying for</h2>
         </div>
         <div class="order-details">
+        </div>
+    </div>
+    <div class="row justify-content-center shadow-2 m-3" style="margin: 1em 4em!important;">
+        <div class="restrictions row justify-content-center mt-2">
+            <h4 class="col-11">Any special instructions/modifications?</h4>
+            <div class="res-contain col-11">
+
+            </div>
+        </div>
+        <div class="address row justify-content-center">
+            <div class="form-group col-11 mb-4 mt-2">
+                <label for="d-address">Delivery Address : </label>
+                <input type="text" name="d-address" placeholder="Enter delivery address here">
+            </div>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -55,7 +74,11 @@
     <script src="./assets/bootstrap/js/bootstrap.bundle.js"></script>
     <script>
         $(document).ready(function(){
-            fetch('https://dreamland-restaurant.onrender.com/cartItems',{
+            document.querySelector('.back').addEventListener('click',()=>{
+                console.log("CLicked")
+                window.history.back()
+            })
+            fetch('http://localhost:5000/cartItems',{
             method:'GET'
         }).then(res=>res.json()).then((data)=>{
             let mealNames=[]
@@ -70,6 +93,7 @@
             }
             let od=document.querySelector('.order-details')
             let cod=''
+            let rd=''
             for(let i=0;i<mealNames.length;i++){
                 cod+=`
                 <div class="row justify-content-center">
@@ -77,6 +101,13 @@
                     <div class="col-3 qnty d-flex justify-content-start" style="border: 2px solid black;">${mealQnty[i]}</div>
                     <div class="col-3 amt d-flex justify-content-start" style="border: 2px solid black;">${mealPrices[i]}</div>
                 </div>
+                `
+                rd+=`
+                <div class="form-group col-11 my-2">
+                    <label for="restriction" class="h6">${mealNames[i]} : </label>
+                    <input type="text" name="restriction" placeholder="Enter modification here">
+                </div>
+                
                 `
             }
             let cod2=`
@@ -88,6 +119,7 @@
             `
             od.insertAdjacentHTML('afterbegin',cod)
             od.insertAdjacentHTML('beforeend',cod2)
+            document.querySelector('.res-contain').innerHTML=rd
             document.querySelector('.momo-amt').innerHTML=grandTotal
         }).then(()=>{
             document.querySelector('.momo-form').addEventListener('submit',(event)=>{

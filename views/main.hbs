@@ -345,7 +345,7 @@ drift.load('svyyafgtma2f');
             })
             function AppInit(){
                 let allMeals;
-                    fetch('https://dreamland-restaurant.onrender.com/getMeals/today',{
+                    fetch('http://localhost:5000/getMeals/today',{
                         method:'GET'
                     }).then(res=>res.json()).then((data)=>{
                         let totalQ=data.pop()
@@ -356,7 +356,7 @@ drift.load('svyyafgtma2f');
                         let menu=document.querySelector('.menu-contents')
                         let mc=''
                         let m=''
-                        data.forEach(element => {
+                        data.forEach((element,index) => {
                             mc+=`
                             <div class="col-lg-3 col-7 rounded3 py-3 mb-lg-2 mb-1 position-relative">
                                 <img src="./assets/images/${element.image}" class="position-absolute w-50 rounded-circle shadow-2 food-pic-mobile" alt="">
@@ -368,7 +368,7 @@ drift.load('svyyafgtma2f');
                                     <p class="more">See more...</p>    
                                 </a>
                                 <!--button class="btn btn-outline-orange-2" ><a href="/add-to-cart/${element._id}" class="add-button" style="color:orange;">Add to cart</a></button-->
-                                <button class="btn btn-outline-orange-2 add-2-cart" >Add to cart</button>
+                                <button class="btn btn-outline-orange-2 add-2-cart">Add to cart</button>
                                 </div>
                             </div>
                             `
@@ -423,7 +423,7 @@ drift.load('svyyafgtma2f');
                                                 ${results.description}
                                             </h6>
                                         </div>
-                                        <button class="btn btn-orange w-100">Add to Cart</button>
+                                        <button class="btn btn-orange w-100 add-2-cart-2">Add to Cart</button>
                                     </div>
                                 </div>
                                 ` 
@@ -435,7 +435,7 @@ drift.load('svyyafgtma2f');
                             element.addEventListener('click',()=>{
                                 let id2=element.previousElementSibling.previousElementSibling.textContent
                                 let cartItem;
-                                fetch(`https://dreamland-restaurant.onrender.com/add-to-cart/${id2}`).then(res=>res.json()).then((data)=>{
+                                fetch(`http://localhost:5000/add-to-cart/${id2}`).then(res=>res.json()).then((data)=>{
                                     let itemNum=document.querySelectorAll('.item-num')
                                     itemNum.forEach((element)=>{
                                         element.textContent=data 
@@ -444,7 +444,7 @@ drift.load('svyyafgtma2f');
                             })
                         })
                     }).then(()=>{
-                        fetch('https://dreamland-restaurant.onrender.com/paymentDetails',{
+                        fetch('http://localhost:5000/paymentDetails',{
                             method:"GET"
                         }).then((res=>res.json())).then((data)=>{
                             let ohd=document.querySelector('.order-history-details')
@@ -481,6 +481,9 @@ drift.load('svyyafgtma2f');
                         //$('.not-cart').hide()
                         //$('.cart').removeClass('d-none')
             //})
+            document.querySelector('.add-2-cart-2').addEventListener('click',()=>{
+                console.log("CLicked")
+            })
         })  
     </script>
     <script src="./assets/js/index.js"></script>
