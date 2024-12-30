@@ -128,7 +128,7 @@ app.post('/editMeal',
                     throw(err)
                 }
             })
-            let editedMeal=mealSchema.findByIdAndUpdate({_id:req.body._id},req.body)
+            let editedMeal=await mealSchema.findByIdAndUpdate({_id:req.body._id},req.body)
             if(editedMeal){
                 console.log("||||||")
                 console.log(editedMeal)
@@ -138,11 +138,8 @@ app.post('/editMeal',
                 res.send("Couldn't save")
             }
         }else{
-            let editedMeal=mealSchema.findByIdAndUpdate({_id:req.body._id},{name:req.body.name,price:req.body.price,description:req.body.description})
+            let editedMeal=await mealSchema.findByIdAndUpdate({_id:req.body._id},{name:req.body.name,price:req.body.price,description:req.body.description})
             if(editedMeal){
-                console.log("/////")
-                console.log(editedMeal)
-                console.log("/////")
                 res.redirect('/userAccount2')
             }else{
                 res.send("Couldn't save")
@@ -151,7 +148,7 @@ app.post('/editMeal',
             
     } catch (error) {
         console.log(error)
-        res.send("error in adding new meal")
+        res.send("error in editing meal")
     }
 })
 app.use('/',router)
