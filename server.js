@@ -22,7 +22,7 @@ require('./config/passport')
 
 
 let cu='mongodb+srv://berinyuy28:berinyuy28.@cluster0.vb5vpsk.mongodb.net/dreamland'
-mongoose.connect(process.env.URI).then(()=>{
+mongoose.connect(cu).then(()=>{
     console.log("Successfully connected to db")
 }).catch(()=>{
     console.log("Couldn't connect to db");
@@ -49,7 +49,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     //store:store,
-    store:MongoStore.create({mongoUrl:process.env.URI}),
+    store:MongoStore.create({mongoUrl:cu}),
     cookie:{maxAge:180*60*1000}
 }))
 app.use(flash())
@@ -74,7 +74,7 @@ const upload=multer({storage:storage})
 
 //function to check if user is logged in and if user is restaurant manager , before saving new meal
 const isAdmin=(req,res,next)=>{
-    if(req.isAuthenticated() && req.user.account_Type=='restaurant-manager'){
+    if(req.isAuthenticated() && (req.user.account_Type=='restaurant-manager')){
         return next()
     }else{
         if(!req.isAuthenticated()){
