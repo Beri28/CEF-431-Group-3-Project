@@ -21,18 +21,18 @@ const nodemailer=require('nodemailer')
 require('./config/passport')
 
 
-let cu='mongodb+srv://berinyuy28:berinyuy28.@cluster0.vb5vpsk.mongodb.net/dreamland'
-mongoose.connect(process.env.URI).then(()=>{
+
+mongoose.connect(process.env.onURI).then(()=>{
     console.log("Successfully connected to db")
 }).catch(()=>{
     console.log("Couldn't connect to db");
 })
 
-// let mse="mongodb+srv://berinyuy28:berinyuy28.@cluster0.vb5vpsk.mongodb.net/dreamland"
-// const store=new MongoDBSession({
-//     uri:process.env.URI,
-//     collection:'sessions',
-// })
+
+const store=new MongoDBSession({
+    uri:process.env.onURI,
+    collection:'sessions',
+})
 
 app.engine('hbs',hbs.engine({
     extname:'hbs',
