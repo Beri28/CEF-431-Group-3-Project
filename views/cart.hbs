@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreamland Restaurant - Cart</title>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/fonts/css/all.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="shortcut icon" href="./assets/app_pics/2-logo-1.png" type="image/x-icon">
+    <script  type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+    <!-- Start of Async Drift Code -->
+<script>
+"use strict";
+
+!function() {
+  var t = window.driftt = window.drift = window.driftt || [];
+  if (!t.init) {
+    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+    t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+    t.factory = function(e) {
+      return function() {
+        var n = Array.prototype.slice.call(arguments);
+        return n.unshift(e), t.push(n), t;
+      };
+    }, t.methods.forEach(function(e) {
+      t[e] = t.factory(e);
+    }), t.load = function(t) {
+      var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+      o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+      var i = document.getElementsByTagName("script")[0];
+      i.parentNode.insertBefore(o, i);
+    };
+  }
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('svyyafgtma2f');
+</script>
+<!-- End of Async Drift Code -->
+</head>
+<body>
+    <div class="shadow-2 container position-relative mb-4">
+        <header class="">
+            <div class="row justify-content-center mt-4 py-2">
+                <div class="col-lg-2 col-md-3 col d-flex justify-content-between">
+                    <a href="/" class="logo-anchor">
+                        <h2 class="logo mb-0"><span class="d">D</span><span class="not-d">reamland</span></h2>
+                        <h6 style="margin-top: -6px;">
+                            <span style="color: orange; font-family: cursive;letter-spacing: .5em;">Restaurant</span>
+                        </h6>
+                    </a>
+                    <a href="{{origin}}" class="d-md-none d-flex align-items-center mobile-search-icon p-3" style="text-decoration: none;">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-8 d-md-flex d-none justify-content-end align-content-center mb-0">
+                    <ul class="row w-75">
+                        <li class="col-lg-3 col-4"><a href="{{origin}}" class="links">Home</a></li>
+                        <li class="col-lg-3 col-4">Menu</li>
+                        <li class="col-lg3 col-4">Contact Us</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md d-md-flex d-none justify-content-lg-between justify-content-md-around align-content-center 3-h-sec">
+                    <div class="search-bar position-relative">
+                        <input class="border-0 shadow-2 w-100" type="search" placeholder="Search">
+                        <i class="fas fa-search position-absolute" style="left: .8em;"></i>
+                    </div>
+                    <div class="cart position-relative mt-2">
+                        <!-- <i class="fas fa-shopping-cart shadow-2 active2"></i>
+                        <sup class="item-num position-absolute" style="top: -.6em; right: -.9em;">2</sup> -->
+                        <a href="./cart.html">
+                            <i class="fas fa-shopping-cart shadow-2"></i>
+                            <sup class="item-num position-absolute" style="top: -.6em; right: -.9em;">{{qnty}}</sup>
+                        </a>
+                    </div>
+                    <div class="account mt-2">
+                        <i class="fas fa-user shadow-2"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="cart-container">
+                
+                
+            </div>
+            
+            <hr style="margin: 1rem 3.5em;">
+            <div class="row justify-content-center mb-2">
+                <div class="col-11">
+                    <form action="/checkout" method="post" class="col-md-6 col-11 shadow-2 p-5 mb-4 rounded">
+                        <h3 class="mb-2">Cart Total</h3>
+                        <div class="col d-flex justify-content-between border-bottom mb-2">
+                            <p class="h6" style="font-weight: bold;">Total </p>
+                            <p class="h6" style="font-weight: bold;"><span class="grand-total"></span> FCFA</p>
+                        </div>
+                        <button class="btn btn-outline-orange mt-2">Proceed to payment <i class="fas fa-arrow-right px-1"></i></button>
+                    </form>
+                </div>
+            </div>
+                
+        </main>
+    </div>
+    <script>
+        fetch('http://localhost:5000/cartItems',{
+            method:'GET'
+        }).then(res=>res.json().then(data=>{
+            let cartCont=document.querySelector('.cart-container');
+            let ccc=''
+            for(let item in data[0]){
+                ccc+=`
+                <div class="row justify-content-center mt-4 pt-4">
+                <div class="col-md-2 col-11 cart-img mb-4">
+                    <img src="./assets/images/${data[0][item].item.image}" class="img-fluid rounded2 w-100" alt="">
+                </div>
+                <div class="col-md-9 col-11 d-flex align-content-md-center">
+                    <div class="row align-content-md-center w-100 mb-5" style="" id="${data[0][item].item._id}">
+                        <div class="col-md-3 col-8">
+                            <p style="font-weight: bold; margin-bottom: .5em;">${data[0][item].item.name}</p>
+                            <p class="text-muted" style="line-height: 0;">Add-ons</p>
+                        </div>
+                        <div class="col-md-3 col-3 d-flex justify-content-md-center justify-content-end text-muted"><span class="d-none og-amt">${data[0][item].item.price}</span><span class="amt">${data[0][item].price}</span>FCFA</div>
+                        <div class="col-md-3 col-6">
+                            <button class="btn btn-outline-orange minus">-</button>
+                            <button class="btn btn-outline-orange qnty">${data[0][item].qty}</button>
+                            <button class="btn btn-outline-orange add">+</button>
+                        </div>
+                        <div class="col-md-2 col-6 shadow-2 d-flex justify-content-center p-3 delete-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                `
+            }
+            
+            cartCont.innerHTML=ccc;
+            let amt=document.querySelectorAll('.amt')
+            const updateGrandTotal=async()=>{
+                let grandTotal=document.querySelector('.grand-total')
+                let total=0;
+                total=parseInt(total)
+                for(let i=0;i<amt.length;i++){
+                    total=total+ parseInt(amt[i].textContent);
+                    total=parseInt(total)
+                }
+                grandTotal.textContent=total
+            }
+            updateGrandTotal()
+        })).then(()=>{
+            let add=document.querySelectorAll('.add');
+            let qnty=document.querySelectorAll('.qnty')
+            let amt=document.querySelectorAll('.amt')
+            let og_amt=document.querySelectorAll('.og-amt')
+            let minus=document.querySelectorAll('.minus');
+            for(let i=0;i<add.length;i++){
+                add[i].addEventListener('click',()=>{
+                    amt[i].textContent=((og_amt[i].textContent) * (++qnty[i].textContent))
+                    updateGrandTotal()
+                    let ID1=add[i].parentElement.parentElement.id
+                    let sentQnty=qnty[i].textContent
+                    let sentAmt=amt[i].textContent;
+                    let sentTotalAmt=document.querySelector('.grand-total').textContent
+                    fetch('http://localhost:5000/updateCart',{
+                        method:'POST',
+                        headers:{
+                            'Accept':'applicaiton/json, text/plain,*/*',
+                            'Content-type':'application/json'
+                        },
+                        body:JSON.stringify({ID:ID1,amt:sentAmt,qnty:sentQnty,tAmt:sentTotalAmt})
+                    }).then(res=>res.json()).then((data)=>{
+                        console.log(data)
+                    })
+                })
+                minus[i].addEventListener('click',()=>{
+                    let ID1=minus[i].parentElement.parentElement.id
+                    if(qnty[i].textContent<=1){
+                        amt[i].textContent=0
+                        updateGrandTotal()
+                        fetch('http://localhost:5000/deleteCartItem',{
+                        method:'POST',
+                        headers:{
+                            'Accept':'applicaiton/json, text/plain,*/*',
+                            'Content-type':'application/json'
+                        },
+                        body:JSON.stringify({ID:ID1})
+                        }).then(res=>res.json()).then( (data)=>{
+                            location.reload()
+                            document.querySelector('.grand-total').textContent=data
+                        })
+                        minus[i].parentElement.parentElement.parentElement.parentElement.remove()
+                        return
+                    }
+                    else{
+                        amt[i].textContent=((og_amt[i].textContent) * (--qnty[i].textContent))
+                        updateGrandTotal()
+                        let sentQnty=qnty[i].textContent
+                        let sentAmt=amt[i].textContent;
+                        let sentTotalAmt=document.querySelector('.grand-total').textContent
+                        fetch('http://localhost:5000/updateCart',{
+                            method:'POST',
+                            headers:{
+                                'Accept':'applicaiton/json, text/plain,*/*',
+                                'Content-type':'application/json'
+                            },
+                            body:JSON.stringify({ID:ID1,amt:sentAmt,qnty:sentQnty,tAmt:sentTotalAmt})
+                        }).then(res=>res.json()).then((data)=>{
+                            console.log(data)
+                        })
+                    }
+                })
+            }
+            const updateGrandTotal=async()=>{
+                let grandTotal=document.querySelector('.grand-total')
+                let total=0;
+                total=parseInt(total)
+                for(let i=0;i<amt.length;i++){
+                    total=total+ parseInt(amt[i].textContent);
+                    total=parseInt(total)
+                }
+                grandTotal.textContent=total
+            }
+            let deleteButton=document.querySelectorAll('.delete-icon')
+            deleteButton.forEach(element=>{
+                element.addEventListener('click',()=>{
+                    //element.parentElement.parentElement.parentElement.classList.add('d-none')
+                    let elId=element.parentElement.id
+                    fetch('http://localhost:5000/deleteCartItem',{
+                        method:'POST',
+                        headers:{
+                            'Accept':'applicaiton/json, text/plain,*/*',
+                            'Content-type':'application/json'
+                        },
+                        body:JSON.stringify({ID:elId})
+                    }).then(res=>res.json()).then( (data)=>{
+                        location.reload()
+                        document.querySelector('.grand-total').textContent=data
+                    })
+                    element.parentElement.parentElement.parentElement.remove()
+                    updateGrandTotal()
+                })
+            })
+        })
+        $(document).ready(function(){
+            
+        })
+    </script>
+</body>
+</html>

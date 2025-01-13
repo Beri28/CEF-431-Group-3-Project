@@ -1,0 +1,24 @@
+{
+    "name":"Dreamland Restaurant",
+    "short_name":"Dreamland",
+    "start_url":"/",
+    "background_color":"#ffa705",
+    "description":"A food delivery app",
+    "theme_color":"#ffa500",
+    "display":"standalone",
+    "icons":[
+        {
+            "src":"assets/app_pics/2-logo-2.png",
+            "sizes":"192x192",
+            "type":"image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src":"assets/app_pics/2-logo-1.png",
+            "sizes":"512x512",
+            "type":"image/png",
+            "purpose": "maskable"
+        }
+
+    ]
+}
