@@ -1,10 +1,11 @@
 {
-  "name": "bookshop",
+  "name": "dreamland restaurant",
   "version": "1.0.0",
-  "description": "bookshop api",
-  "main": "app.js",
+  "description": "dreamland restaurant app",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "testOg": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
     "start": "nodemon server.js"
   },
   "author": "berinyuy cletus",
@@ -35,5 +36,9 @@
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.0.1",
+    "mocha-html-reporter": "^0.0.1"
   }
 }
