@@ -1,0 +1,44 @@
+{
+  "name": "dreamland restaurant",
+  "version": "1.0.0",
+  "description": "dreamland restaurant app",
+  "main": "server.js",
+  "scripts": {
+    "testOg": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --reporter spec",
+    "start": "nodemon server.js"
+  },
+  "author": "berinyuy cletus",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.2.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-flash": "^0.0.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.9.8",
+    "nodemon": "^2.0.19",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.0.1",
+    "mocha-html-reporter": "^0.0.1"
+  }
+}
