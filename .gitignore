@@ -4,3 +4,10 @@ __pycache__
 .pytest_cache
 .venv
 assets
+.venv
+assets
+Register.py
+temp.py
+test2.py
+.idea
+__pycache__
