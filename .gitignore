@@ -1,0 +1,7 @@
+.venv
+assets
+Register.py
+temp.py
+test2.py
+.idea
+__pycache__
