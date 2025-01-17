@@ -81,107 +81,71 @@ def test_register_button_presence(driver):
     except Exception as e:
         pytest.fail(f"❌ Error finding register button: {str(e)}")
 
-# def test_successful_registration_as_customer(driver):
-#     try:
-#         wait = WebDriverWait(driver, 10)
-#         # Find and fill the signup form
-#         driver.get("http://localhost:5000/register")
-#         driver.find_element(By.NAME, "name").send_keys("John")
-#         time.sleep(2)
-#         email_input = driver.find_element(By.NAME, "email")
-#         email_input.send_keys("john2@gmail.com")
-#         time.sleep(2)
-#         driver.find_element(By.NAME, "address").send_keys("molyko")
-#         time.sleep(2)
-#         password_input = driver.find_element(By.NAME, "password")
-#         password_input.send_keys("12345678")
-#         time.sleep(2)
-#         driver.find_element(By.NAME, "contact").send_keys("680124356")
-#         time.sleep(2)
-#         driver.find_element(By.NAME, "account_Type").send_keys("customer")
-#         time.sleep(2)
-#         # submit_button = driver.find_element(By.ID, "register")
-#         submit_button = wait.until(EC.element_to_be_clickable((By.ID, "register")))
-#         submit_button.click()
-#         time.sleep(6)
-#         # WebDriverWait(driver, 10).until(EC.alert_is_present())
-#         # alert = driver.switch_to.alert
-#         # assert "userAccount" in driver.current_url
-#         assert "/userAccount" in driver.current_url
-#         # alert.accept()
-#         print("✅ Successful register as customer")
-#         time.sleep(5)
-#     except Exception as e:
-#         pytest.fail(f"❌ Error registering customer: {str(e)}")
-
-# def test_successful_registration_as_manager(driver):
-#     try:
-#         wait = WebDriverWait(driver, 10)
-#         # Find and fill the signup form
-#         driver.get("http://localhost:5000/register")
-#         driver.find_element(By.NAME, "name").send_keys("Mary")
-#         time.sleep(2)
-#         email_input = driver.find_element(By.NAME, "email")
-#         email_input.send_keys("mary@gmail.com")
-#         time.sleep(2)
-#         driver.find_element(By.NAME, "address").send_keys("molyko")
-#         time.sleep(2)
-#         password_input = driver.find_element(By.NAME, "password")
-#         password_input.send_keys("12345678")
-#         time.sleep(2)
-#         driver.find_element(By.NAME, "contact").send_keys("680124356")
-#         time.sleep(2)
-#         # driver.find_element(By.NAME, "account_Type").send_keys("restaurant-manager")
-#         wait.until(EC.element_to_be_clickable((By.NAME, "account_Type"))).send_keys("restaurant-manager")
-#         time.sleep(2)
-#         submit_button = driver.find_element(By.ID, "register")
-#         submit_button.click()
-#         driver.find_element(By.NAME, "code").send_keys("Mary4321")
-#         # driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
-#         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[type="submit"]'))).click()
-#         time.sleep(5)
-#         # WebDriverWait(driver, 10).until(EC.alert_is_present())
-#         # alert = driver.switch_to.alert
-#         # assert "userAccount" in driver.current_url
-#         assert "/userAccount2" in driver.current_url
-#         print("✅ Successful register as manager")
-#         time.sleep(5)
-#     except Exception as e:
-#         pytest.fail(f"❌ Error registering manager: {str(e)}")
-
 def test_successful_registration_as_customer(driver):
     try:
-        driver.get("http://localhost:5000/login")
+        wait = WebDriverWait(driver, 10)
+        # Find and fill the signup form
+        driver.get("http://localhost:5000/register")
+        driver.find_element(By.NAME, "name").send_keys("John")
+        time.sleep(2)
         email_input = driver.find_element(By.NAME, "email")
+        email_input.send_keys("john2@gmail.com")
+        time.sleep(2)
+        driver.find_element(By.NAME, "address").send_keys("molyko")
+        time.sleep(2)
         password_input = driver.find_element(By.NAME, "password")
-        submit_button = driver.find_element(By.ID, "login")
-        email_input.send_keys("bongyu@gmail.com")
         password_input.send_keys("12345678")
+        time.sleep(2)
+        driver.find_element(By.NAME, "contact").send_keys("680124356")
+        time.sleep(2)
+        driver.find_element(By.NAME, "account_Type").send_keys("customer")
+        time.sleep(2)
+        # submit_button = driver.find_element(By.ID, "register")
+        submit_button = wait.until(EC.element_to_be_clickable((By.ID, "register")))
         submit_button.click()
-        time.sleep(5)
+        time.sleep(6)
         # WebDriverWait(driver, 10).until(EC.alert_is_present())
         # alert = driver.switch_to.alert
-        assert "Hello Bongyu" in driver.page_source
-        print("✅ Successful registration as customer")
-        #         time.sleep(5)
+        # assert "userAccount" in driver.current_url
+        assert "/userAccount" in driver.current_url
+        # alert.accept()
+        print("✅ Successful register as customer")
+        time.sleep(5)
     except Exception as e:
         pytest.fail(f"❌ Error registering customer: {str(e)}")
 
 def test_successful_registration_as_manager(driver):
     try:
-        driver.get("http://localhost:5000/login")
+        wait = WebDriverWait(driver, 10)
+        # Find and fill the signup form
+        driver.get("http://localhost:5000/register")
+        driver.find_element(By.NAME, "name").send_keys("Mary")
+        time.sleep(2)
         email_input = driver.find_element(By.NAME, "email")
+        email_input.send_keys("mary@gmail.com")
+        time.sleep(2)
+        driver.find_element(By.NAME, "address").send_keys("molyko")
+        time.sleep(2)
         password_input = driver.find_element(By.NAME, "password")
-        submit_button = driver.find_element(By.ID, "login")
-        email_input.send_keys("bongyu@gmail.com")
         password_input.send_keys("12345678")
+        time.sleep(2)
+        driver.find_element(By.NAME, "contact").send_keys("680124356")
+        time.sleep(2)
+        # driver.find_element(By.NAME, "account_Type").send_keys("restaurant-manager")
+        wait.until(EC.element_to_be_clickable((By.NAME, "account_Type"))).send_keys("restaurant-manager")
+        time.sleep(2)
+        submit_button = driver.find_element(By.ID, "register")
         submit_button.click()
+        driver.find_element(By.NAME, "code").send_keys("Mary4321")
+        # driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[type="submit"]'))).click()
         time.sleep(5)
         # WebDriverWait(driver, 10).until(EC.alert_is_present())
         # alert = driver.switch_to.alert
-        assert "Hello Bongyu" in driver.page_source
-        print("✅ Successful registration as manager")
-        #         time.sleep(5)
+        # assert "userAccount" in driver.current_url
+        assert "/userAccount2" in driver.current_url
+        print("✅ Successful register as manager")
+        time.sleep(5)
     except Exception as e:
         pytest.fail(f"❌ Error registering manager: {str(e)}")
 
@@ -298,52 +262,36 @@ def test_search(driver):
     print("✅ Email input present")
     assert results, pytest.fail(f"❌ Error finding meal")
 
-# def test_add_to_or_remove_from_todays_menu(driver):
-#     try:
-#         wait = WebDriverWait(driver, 10)
-#         driver.get("http://localhost:5000/login")
-#         email_input = driver.find_element(By.NAME, "email")
-#         password_input = driver.find_element(By.NAME, "password")
-#         submit_button = driver.find_element(By.ID, "login")
-#         email_input.send_keys("bongyu@gmail.com")
-#         password_input.send_keys("12345678")
-#         # submit_button.click()
-#         wait.until(EC.element_to_be_clickable((By.ID, "login"))).click()
-#         time.sleep(5)
-#         add_to_todays_menu = driver.find_element(By.CLASS_NAME, "todays-menu")
-#         time.sleep(5)
-#         r_add_to_todays_menu = driver.find_element(By.CLASS_NAME, "r-todays-menu")
-#         # for i, element in enumerate(add_to_todays_menu):
-#         if "d-none" in add_to_todays_menu.get_attribute("class"):
-#             time.sleep(3)
-#             r_add_to_todays_menu.click()
-#             time.sleep(5)
-#             # assert "d-none" in r_add_to_todays_menu[i].get_attribute("class")
-#         elif "d-none" not in add_to_todays_menu.get_attribute("class"):
-#             time.sleep(3)
-#             # add_to_todays_menu.click()
-#             wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "todays-menu"))).click()
-#             time.sleep(5)
-#             # assert "d-none" in element.get_attribute("class")
-#         else:
-#             raise AssertionError("Test failed. Couldn't find button")
-#         time.sleep(2)
-#         print("✅ Edited menu of the day")
-#     except Exception as e:
-#         pytest.fail(f"❌ Error editing menu of the day: {str(e)}")
 def test_add_to_or_remove_from_todays_menu(driver):
     try:
+        wait = WebDriverWait(driver, 10)
         driver.get("http://localhost:5000/login")
         email_input = driver.find_element(By.NAME, "email")
         password_input = driver.find_element(By.NAME, "password")
         submit_button = driver.find_element(By.ID, "login")
         email_input.send_keys("bongyu@gmail.com")
         password_input.send_keys("12345678")
-        submit_button.click()
+        # submit_button.click()
+        wait.until(EC.element_to_be_clickable((By.ID, "login"))).click()
         time.sleep(5)
-        # WebDriverWait(driver, 10).until(EC.alert_is_present())
-        # alert = driver.switch_to.alert
-        assert "Hello Bongyu" in driver.page_source
+        add_to_todays_menu = driver.find_element(By.CLASS_NAME, "todays-menu")
+        time.sleep(5)
+        r_add_to_todays_menu = driver.find_element(By.CLASS_NAME, "r-todays-menu")
+        # for i, element in enumerate(add_to_todays_menu):
+        if "d-none" in add_to_todays_menu.get_attribute("class"):
+            time.sleep(3)
+            r_add_to_todays_menu.click()
+            time.sleep(5)
+            # assert "d-none" in r_add_to_todays_menu[i].get_attribute("class")
+        elif "d-none" not in add_to_todays_menu.get_attribute("class"):
+            time.sleep(3)
+            # add_to_todays_menu.click()
+            wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "todays-menu"))).click()
+            time.sleep(5)
+            # assert "d-none" in element.get_attribute("class")
+        else:
+            raise AssertionError("Test failed. Couldn't find button")
+        time.sleep(2)
         print("✅ Edited menu of the day")
     except Exception as e:
         pytest.fail(f"❌ Error editing menu of the day: {str(e)}")
@@ -357,103 +305,70 @@ def test_add_to_or_remove_from_promo_menu(driver):
         email_input.send_keys("bongyu@gmail.com")
         password_input.send_keys("12345678")
         submit_button.click()
-        time.sleep(5)
-        # WebDriverWait(driver, 10).until(EC.alert_is_present())
-        # alert = driver.switch_to.alert
-        assert "Hello Bongyu" in driver.page_source
+        time.sleep(3)
+        add_to_todays_menu = driver.find_element(By.CLASS_NAME, "promo-menu")
+        time.sleep(2)
+        r_add_to_todays_menu = driver.find_element(By.CLASS_NAME, "r-promo-menu")
+        if "d-none" in add_to_todays_menu.get_attribute("class"):
+            time.sleep(3)
+            r_add_to_todays_menu.click()
+            time.sleep(2)
+            # assert "d-none" in r_add_to_todays_menu[i].get_attribute("class")
+        elif "d-none" not in add_to_todays_menu.get_attribute("class") :
+            time.sleep(3)
+            add_to_todays_menu.click()
+            time.sleep(2)
+            # assert "d-none" in element.get_attribute("class")
+        else:
+            raise AssertionError("Test failed. Couldn't find button")
+        time.sleep(2)
         print("✅ Edited promo menu")
     except Exception as e:
         pytest.fail(f"❌ Error editing promo menu: {str(e)}")
 
-# def test_add_to_or_remove_from_promo_menu(driver):
-#     try:
-#         driver.get("http://localhost:5000/login")
-#         email_input = driver.find_element(By.NAME, "email")
-#         password_input = driver.find_element(By.NAME, "password")
-#         submit_button = driver.find_element(By.ID, "login")
-#         email_input.send_keys("bongyu@gmail.com")
-#         password_input.send_keys("12345678")
-#         submit_button.click()
-#         time.sleep(3)
-#         add_to_todays_menu = driver.find_element(By.CLASS_NAME, "promo-menu")
-#         time.sleep(2)
-#         r_add_to_todays_menu = driver.find_element(By.CLASS_NAME, "r-promo-menu")
-#         if "d-none" in add_to_todays_menu.get_attribute("class"):
-#             time.sleep(3)
-#             r_add_to_todays_menu.click()
-#             time.sleep(2)
-#             # assert "d-none" in r_add_to_todays_menu[i].get_attribute("class")
-#         elif "d-none" not in add_to_todays_menu.get_attribute("class") :
-#             time.sleep(3)
-#             add_to_todays_menu.click()
-#             time.sleep(2)
-#             # assert "d-none" in element.get_attribute("class")
-#         else:
-#             raise AssertionError("Test failed. Couldn't find button")
-#         time.sleep(2)
-#         print("✅ Edited promo menu")
-#     except Exception as e:
-#         pytest.fail(f"❌ Error editing promo menu: {str(e)}")
-
-# def test_add_koki_to_cart(driver):
-#     driver.implicitly_wait(10)  # Set a default wait time
-#
-#     try:
-#         driver.get("http://localhost:5000/login")
-#         print("Navigated to login page.")
-#
-#         driver.find_element(By.NAME, "email").send_keys("bongyu@gmail.com")
-#         driver.find_element(By.NAME, "password").send_keys("12345678")
-#         driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
-#         print("Logged in.")
-#         # driver.find_element(By.CLASS_NAME, "add-2-cart").click()
-#         time.sleep(4)
-#
-#         # Validate cart count
-#         initial_count = int(driver.find_element(By.CSS_SELECTOR, ".shopping-cart .item-num").text)
-#         print(initial_count)
-#         assert initial_count == 0, f"Initial cart count is not 0 (found: {initial_count})"
-#
-#         # Locate Koki and add to cart
-#         menu_items = driver.find_elements(By.CLASS_NAME, "food-info")
-#         koki_found = False
-#         for item in menu_items:
-#             time.sleep(4)
-#             food_name = item.find_element(By.CSS_SELECTOR, ".food-info p:first-child").text
-#             if food_name == "Koki":
-#                 koki_found = True
-#                 print("Koki is displayed in the menu section.")
-#                 add_to_cart_button = WebDriverWait(driver, 10).until(item.find_element(By.CSS_SELECTOR, ".add-2-cart"))
-#                 add_to_cart_button.click()
-#                 time.sleep(6)
-#                 print("Koki added to cart!")
-#
-#                 updated_count = WebDriverWait(driver, 10).until(
-#                     lambda d: int(d.find_element(By.CSS_SELECTOR, ".shopping-cart .item-num").text)
-#                 )
-#                 assert updated_count == 1, f"Unexpected cart count: {updated_count}"
-#                 print("Test finished. Koki has been added to the cart.")
-#                 return
-#         assert koki_found, "Koki is not displayed in the menu section."
-#         print("✅ Added to cart")
-#     except Exception as e:
-#         pytest.fail(f"❌ Error adding to cart: {str(e)}")
 def test_add_koki_to_cart(driver):
+    driver.implicitly_wait(10)  # Set a default wait time
+
     try:
         driver.get("http://localhost:5000/login")
-        email_input = driver.find_element(By.NAME, "email")
-        password_input = driver.find_element(By.NAME, "password")
-        submit_button = driver.find_element(By.ID, "login")
-        email_input.send_keys("bongyu@gmail.com")
-        password_input.send_keys("12345678")
-        submit_button.click()
-        time.sleep(5)
-        # WebDriverWait(driver, 10).until(EC.alert_is_present())
-        # alert = driver.switch_to.alert
-        assert "Hello Bongyu" in driver.page_source
-        print("✅ Koki added to cart")
+        print("Navigated to login page.")
+
+        driver.find_element(By.NAME, "email").send_keys("bongyu@gmail.com")
+        driver.find_element(By.NAME, "password").send_keys("12345678")
+        driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+        print("Logged in.")
+        # driver.find_element(By.CLASS_NAME, "add-2-cart").click()
+        time.sleep(4)
+
+        # Validate cart count
+        initial_count = int(driver.find_element(By.CSS_SELECTOR, ".shopping-cart .item-num").text)
+        print(initial_count)
+        assert initial_count == 0, f"Initial cart count is not 0 (found: {initial_count})"
+
+        # Locate Koki and add to cart
+        menu_items = driver.find_elements(By.CLASS_NAME, "food-info")
+        koki_found = False
+        for item in menu_items:
+            time.sleep(4)
+            food_name = item.find_element(By.CSS_SELECTOR, ".food-info p:first-child").text
+            if food_name == "Koki":
+                koki_found = True
+                print("Koki is displayed in the menu section.")
+                add_to_cart_button = WebDriverWait(driver, 10).until(item.find_element(By.CSS_SELECTOR, ".add-2-cart"))
+                add_to_cart_button.click()
+                time.sleep(6)
+                print("Koki added to cart!")
+
+                updated_count = WebDriverWait(driver, 10).until(
+                    lambda d: int(d.find_element(By.CSS_SELECTOR, ".shopping-cart .item-num").text)
+                )
+                assert updated_count == 1, f"Unexpected cart count: {updated_count}"
+                print("Test finished. Koki has been added to the cart.")
+                return
+        assert koki_found, "Koki is not displayed in the menu section."
+        print("✅ Added to cart")
     except Exception as e:
-        pytest.fail(f"❌ Error adding Koki to cart: {str(e)}")
+        pytest.fail(f"❌ Error adding to cart: {str(e)}")
 
 class TestMealEditing:
     def scroll_and_find_edit_button(self, driver, wait):
