@@ -1,0 +1,7 @@
+__pycache__
+.pytest_cache
+.vscode
+assets
+test_reports
+conftest.py 
+pytest.ini
