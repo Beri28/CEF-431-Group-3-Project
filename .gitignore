@@ -5,3 +5,16 @@ assets
 test_reports
 conftest.py 
 pytest.ini
+CEF-431-Group-3-Project-main
+Search.html
+__pycache__
+.pytest_cache
+.venv
+assets
+.venv
+assets
+Register.py
+temp.py
+test2.py
+.idea
+__pycache__

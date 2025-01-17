@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
     "cSpell.words": [
         "geckodriver",
         "msedgedriver"
     ]
+=======
+    "liveServer.settings.port": 5501
+>>>>>>> 6e0e517615788abb230fde9a78e8038039935969
 }
